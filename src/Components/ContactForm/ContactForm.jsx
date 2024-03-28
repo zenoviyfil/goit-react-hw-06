@@ -1,8 +1,9 @@
 import css from './ContactForm.module.css'
-import { Formik, Form, ErrorMessage, Field } from 'formik';
 import * as Yup from 'yup';
+import { Formik, Form, ErrorMessage, Field } from 'formik';
 import { FaUser, FaPhone, FaPlus } from "react-icons/fa";
-import { nanoid } from 'nanoid';
+import { useDispatch } from 'react-redux';
+import { addContact } from '../../redux/contactsSlice'
 
 const formSchema = Yup.object().shape({
   name: Yup.string().min(3, 'Too short!').max(50, 'Too long!').required('Required!'),
@@ -15,10 +16,11 @@ const INITIAL_FORM_DATA = {
   number: ''
 }
 
-const ContactForm = ({ onAdd }) => {
+const ContactForm = () => {
+  const dispatch = useDispatch()
   
   const handleSubmit = (data, actions) => {
-    onAdd({ id: nanoid(), ...data})
+    dispatch(addContact(data))
     actions.resetForm()
   }
 
