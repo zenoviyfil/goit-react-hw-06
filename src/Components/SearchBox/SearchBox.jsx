@@ -1,7 +1,8 @@
 import css from './SearchBox.module.css'
 import { FaBook } from "react-icons/fa";
 import { useDispatch, useSelector } from 'react-redux';
-import { changeFilter, selectFilter } from '../../redux/filtersSlice'
+import { changeFilter } from '../../redux/filtersSlice'
+import { selectFilter } from '../../selectors/selectors'
 
 const SearchBox = () => {
   const dispatch = useDispatch()
